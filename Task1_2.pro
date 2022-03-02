@@ -10,32 +10,26 @@ CONFIG += c++11
 
 SOURCES += \
     Circle.cpp \
-    Hex.cpp \
+    Polygon.cpp \
     Rect.cpp \
-    RegPolygon.cpp \
+    Rectangable.cpp \
     Rhomb.cpp \
+    RightPol.cpp \
     Square.cpp \
     Star.cpp \
-    Star5.cpp \
-    Star6.cpp \
-    Star8.cpp \
-    Triangle.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     Circle.h \
     Figure.h \
-    Hex.h \
+    Polygon.h \
     Rect.h \
-    RegPolygon.h \
+    Rectangable.h \
     Rhomb.h \
+    RightPol.h \
     Square.h \
     Star.h \
-    Star5.h \
-    Star6.h \
-    Star8.h \
-    Triangle.h \
     mainwindow.h
 
 FORMS += \
