@@ -33,7 +33,7 @@ MainWindow::~MainWindow()
 
 void QGraphicsScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
-   addRect(10,20,800,400);
+
 }
 
 void QGraphicsScene:: keyPressEvent(QKeyEvent *keyEvent)
@@ -41,7 +41,7 @@ void QGraphicsScene:: keyPressEvent(QKeyEvent *keyEvent)
     addRect(30,30,30,30);
 }
 
-void MainWindow::on_radioEllipse_clicked(bool checked)
+void MainWindow::on_radioEllipse_clicked()
 {
         if(currentItem!=nullptr)
         {
@@ -54,7 +54,7 @@ void MainWindow::on_radioEllipse_clicked(bool checked)
 }
 
 
-void MainWindow::on_radioTriangle_clicked(bool checked)
+void MainWindow::on_radioTriangle_clicked()
 {
     if(currentItem!=nullptr)
     {
@@ -67,7 +67,7 @@ void MainWindow::on_radioTriangle_clicked(bool checked)
 }
 
 
-void MainWindow::on_radioStar6_clicked(bool checked)
+void MainWindow::on_radioStar6_clicked()
 {
 
     if(currentItem!=nullptr)
@@ -82,7 +82,7 @@ void MainWindow::on_radioStar6_clicked(bool checked)
 }
 
 
-void MainWindow::on_radioStar8_clicked(bool checked)
+void MainWindow::on_radioStar8_clicked()
 {
 
 
@@ -99,7 +99,7 @@ void MainWindow::on_radioStar8_clicked(bool checked)
 }
 
 
-void MainWindow::on_radioStar5_clicked(bool checked)
+void MainWindow::on_radioStar5_clicked()
 {
 
     if(currentItem!=nullptr)
@@ -114,7 +114,7 @@ void MainWindow::on_radioStar5_clicked(bool checked)
 }
 
 
-void MainWindow::on_radioRect_clicked(bool checked)
+void MainWindow::on_radioRect_clicked()
 {
 
     if(currentItem!=nullptr)
@@ -129,7 +129,7 @@ void MainWindow::on_radioRect_clicked(bool checked)
 }
 
 
-void MainWindow::on_radioSquare_clicked(bool checked)
+void MainWindow::on_radioSquare_clicked()
 {
     if(currentItem!=nullptr)
     {
@@ -144,7 +144,7 @@ void MainWindow::on_radioSquare_clicked(bool checked)
 }
 
 
-void MainWindow::on_radioRhomb_clicked(bool checked)
+void MainWindow::on_radioRhomb_clicked()
 {
 
         if(currentItem!=nullptr)
@@ -158,17 +158,20 @@ void MainWindow::on_radioRhomb_clicked(bool checked)
 }
 
 
-void MainWindow::on_radioHex_clicked(bool checked)
+void MainWindow::on_radioPolygon_clicked()
 {
-
+    int n = ui->linePolygon->text().toInt();
+    if (n >= 2)
+    {
         if(currentItem!=nullptr)
         {
             scene->removeItem(currentItem);
             delete currentItem;
         }
-        currentItem = new RightPol(6);
+        currentItem = new RightPol(n);
         currentItem->setRotation(ui->horizontalSlider->value());
         scene->addItem(currentItem);
+    }
 }
 
 
@@ -176,26 +179,40 @@ void MainWindow::on_radioHex_clicked(bool checked)
 void MainWindow::on_pushUp_pressed()
 {
      currentItem->moveBy(0, -10);
+     massCent = QPointF(massCent.x(), massCent.y() - 10);
+     QString massCenter = "(" + QString::number(massCent.x()) + ";" +
+             QString::number(massCent.y()) + ")";
+     ui->labelMassCenter->setText(massCenter);
 }
 
 
 void MainWindow::on_pushLeft_pressed()
 {
         currentItem->moveBy(-10, 0);
+        massCent = QPointF(massCent.x() - 10, massCent.y());
+        QString massCenter = "(" + QString::number(massCent.x()) + ";" +
+                QString::number(massCent.y()) + ")";
+        ui->labelMassCenter->setText(massCenter);
 }
 
 
 void MainWindow::on_pushRight_pressed()
 {
         currentItem->moveBy(10, 0);
+        massCent = QPointF(massCent.x() + 10, massCent.y());
+        QString massCenter = "(" + QString::number(massCent.x()) + ";" +
+                QString::number(massCent.y()) + ")";
+        ui->labelMassCenter->setText(massCenter);
 }
 
 
 void MainWindow::on_pushDown_pressed()
 {
-
         currentItem->moveBy(0, 10);
-
+        massCent = QPointF(massCent.x(), massCent.y() + 10);
+        QString massCenter = "(" + QString::number(massCent.x()) + ";" +
+                QString::number(massCent.y()) + ")";
+        ui->labelMassCenter->setText(massCenter);
 }
 
 
@@ -210,9 +227,38 @@ void MainWindow::on_horizontalSlider_valueChanged(int value)
 {
     if(currentItem!=nullptr)
     {
-        QPointF origin(ui->lineX->text().toDouble(), ui->lineY->text().toDouble());
-        currentItem->setTransformOriginPoint(origin);
-         currentItem->setRotation(value);
+        if (ui->lineX->text().toInt() != 0 && ui->lineY->text().toInt() != 0){
+        QPointF origin(ui->lineX->text().toInt(), ui->lineY->text().toInt());
+        currentItem->setTransformOriginPoint(origin);}
+        currentItem->setRotation(value);
+    }
+}
+
+
+void MainWindow::on_radioStar_clicked()
+{
+    int n = ui->lineStar->text().toInt();
+    if (n >= 5)
+    {
+        if(currentItem!=nullptr)
+        {
+            scene->removeItem(currentItem);
+            delete currentItem;
+        }
+            currentItem = new Star(n);
+            Star* star = new Star(n);
+            star->findSquare();
+            QString square = QString::number(star->getSquare());
+            ui->labelSquare->setText(square);
+            star->findPerimeter();
+            QString perimeter = QString::number(star->getPerimeter());
+            ui->labelPerimeter->setText(perimeter);
+            QString massCenter = "(" + QString::number(star->getMassCenter().x()) + ";" +
+                    QString::number(star->getMassCenter().y()) + ")";
+            massCent = star->getMassCenter();
+            ui->labelMassCenter->setText(massCenter);
+            currentItem->setRotation(ui->horizontalSlider->value());
+            scene->addItem(currentItem);
     }
 }
 

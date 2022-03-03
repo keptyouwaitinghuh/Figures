@@ -26,23 +26,23 @@ public:
     void rotateItem(int angle);
 private slots:
 
-    void on_radioEllipse_clicked(bool checked);
+    void on_radioEllipse_clicked();
 
-    void on_radioTriangle_clicked(bool checked);
+    void on_radioTriangle_clicked();
 
-    void on_radioStar6_clicked(bool checked);
+    void on_radioStar6_clicked();
 
-    void on_radioStar8_clicked(bool checked);
+    void on_radioStar8_clicked();
 
-    void on_radioStar5_clicked(bool checked);
+    void on_radioStar5_clicked();
 
-    void on_radioRect_clicked(bool checked);
+    void on_radioRect_clicked();
 
-    void on_radioSquare_clicked(bool checked);
+    void on_radioSquare_clicked();
 
-    void on_radioRhomb_clicked(bool checked);
+    void on_radioRhomb_clicked();
 
-    void on_radioHex_clicked(bool checked);
+    void on_radioPolygon_clicked();
 
     void on_pushUp_pressed();
 
@@ -56,9 +56,12 @@ private slots:
 
     void on_horizontalSlider_valueChanged(int value);
 
+    void on_radioStar_clicked();
+
 private:
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
     QGraphicsItem *currentItem;
+    QPointF massCent;
 };
 #endif // MAINWINDOW_H

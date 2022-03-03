@@ -12,7 +12,6 @@ protected:
 
 public:
     Polygon(unsigned short n);
-    QPointF getMassCenter();
 };
 
 

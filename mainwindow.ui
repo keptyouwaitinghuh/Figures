@@ -27,59 +27,24 @@
    <widget class="QWidget" name="gridLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>630</y>
-      <width>801</width>
+      <x>130</x>
+      <y>620</y>
+      <width>668</width>
       <height>111</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="2">
+      <widget class="QRadioButton" name="radioStar">
+       <property name="text">
+        <string>Звезда</string>
+       </property>
+      </widget>
+     </item>
      <item row="1" column="0">
       <widget class="QRadioButton" name="radioEllipse">
        <property name="text">
-        <string>Эллипс</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="2">
-      <widget class="QRadioButton" name="radioSquare">
-       <property name="text">
-        <string>Квадрат</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="2">
-      <widget class="QRadioButton" name="radioRhomb">
-       <property name="text">
-        <string>Ромб</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="2">
-      <widget class="QRadioButton" name="radioRect">
-       <property name="text">
-        <string>Прямоугольник</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="QRadioButton" name="radioStar6">
-       <property name="text">
-        <string>Звезда-6</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QRadioButton" name="radioStar8">
-       <property name="text">
-        <string>Зезда-8</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="1">
-      <widget class="QRadioButton" name="radioStar5">
-       <property name="text">
-        <string>Звезда-5</string>
+        <string>Круг</string>
        </property>
       </widget>
      </item>
@@ -90,10 +55,37 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="0">
-      <widget class="QRadioButton" name="radioHex">
+     <item row="0" column="4">
+      <widget class="QLineEdit" name="lineStar"/>
+     </item>
+     <item row="0" column="1">
+      <widget class="QRadioButton" name="radioRect">
        <property name="text">
-        <string>Шестиугольник</string>
+        <string>Прямоугольник</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="2">
+      <widget class="QRadioButton" name="radioPolygon">
+       <property name="text">
+        <string>Многоугольник</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QRadioButton" name="radioSquare">
+       <property name="text">
+        <string>Квадрат</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="4">
+      <widget class="QLineEdit" name="linePolygon"/>
+     </item>
+     <item row="0" column="0">
+      <widget class="QRadioButton" name="radioRhomb">
+       <property name="text">
+        <string>Ромб</string>
        </property>
       </widget>
      </item>
@@ -102,41 +94,47 @@
    <widget class="QWidget" name="gridLayoutWidget_2">
     <property name="geometry">
      <rect>
-      <x>830</x>
+      <x>820</x>
       <y>20</y>
-      <width>368</width>
-      <height>278</height>
+      <width>371</width>
+      <height>331</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout_2">
      <property name="horizontalSpacing">
       <number>5</number>
      </property>
-     <item row="0" column="0">
-      <widget class="QPushButton" name="pushLeft">
+     <item row="1" column="2">
+      <widget class="QPushButton" name="pushCanvas">
        <property name="text">
-        <string>Влево</string>
+        <string>Канва</string>
        </property>
       </widget>
      </item>
-     <item row="0" column="2">
-      <widget class="QPushButton" name="pushRight">
-       <property name="text">
-        <string>Вправо</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QPushButton" name="pushDown">
-       <property name="text">
-        <string>Вниз</string>
-       </property>
-      </widget>
+     <item row="3" column="3">
+      <widget class="QLineEdit" name="lineY"/>
      </item>
      <item row="0" column="1">
       <widget class="QPushButton" name="pushUp">
        <property name="text">
         <string>Вверх</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QPushButton" name="pushScale">
+       <property name="text">
+        <string>Масштаб</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="2">
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>y coord:</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
       </widget>
      </item>
@@ -151,109 +149,115 @@
       </widget>
      </item>
      <item row="1" column="0">
-      <widget class="QPushButton" name="pushCanvas">
+      <widget class="QPushButton" name="pushRight">
        <property name="text">
-        <string>Канва</string>
+        <string>Вправо</string>
        </property>
       </widget>
      </item>
-     <item row="2" column="0">
-      <widget class="QPushButton" name="pushScale">
+     <item row="0" column="0">
+      <widget class="QPushButton" name="pushLeft">
        <property name="text">
-        <string>Масштаб</string>
+        <string>Влево</string>
        </property>
       </widget>
      </item>
      <item row="2" column="1">
       <widget class="QLineEdit" name="lineScale"/>
      </item>
-     <item row="2" column="2">
+     <item row="1" column="1">
+      <widget class="QPushButton" name="pushDown">
+       <property name="text">
+        <string>Вниз</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="3">
       <widget class="QLineEdit" name="lineX"/>
      </item>
-     <item row="3" column="2">
-      <widget class="QLineEdit" name="lineY"/>
+     <item row="2" column="2">
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>x coord:</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
      </item>
     </layout>
    </widget>
-   <widget class="QTableWidget" name="table">
+   <widget class="QWidget" name="gridLayoutWidget_3">
     <property name="geometry">
      <rect>
-      <x>840</x>
-      <y>290</y>
-      <width>346</width>
-      <height>451</height>
+      <x>820</x>
+      <y>369</y>
+      <width>251</width>
+      <height>251</height>
      </rect>
     </property>
-    <row>
-     <property name="text">
-      <string>Периметр</string>
-     </property>
-    </row>
-    <row>
-     <property name="text">
-      <string>Площадь</string>
-     </property>
-    </row>
-    <row>
-     <property name="text">
-      <string>Центр масс</string>
-     </property>
-    </row>
-    <row>
-     <property name="text">
-      <string>Точка1</string>
-     </property>
-    </row>
-    <row>
-     <property name="text">
-      <string>Точка2</string>
-     </property>
-    </row>
-    <row>
-     <property name="text">
-      <string>Точка3</string>
-     </property>
-    </row>
-    <row>
-     <property name="text">
-      <string>Точка4</string>
-     </property>
-    </row>
-    <row>
-     <property name="text">
-      <string>Точка5</string>
-     </property>
-    </row>
-    <row>
-     <property name="text">
-      <string>Точка6</string>
-     </property>
-    </row>
-    <row>
-     <property name="text">
-      <string>Точка7</string>
-     </property>
-    </row>
-    <row>
-     <property name="text">
-      <string>Точка8</string>
-     </property>
-    </row>
-    <column>
-     <property name="text">
-      <string>Значения</string>
-     </property>
-    </column>
-    <item row="0" column="0">
-     <property name="text">
-      <string/>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>4</pointsize>
-      </font>
-     </property>
-    </item>
+    <layout class="QGridLayout" name="gridLayout_3">
+     <item row="2" column="0">
+      <widget class="QLabel" name="label_5">
+       <property name="text">
+        <string>Центр масс:</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QLabel" name="label_4">
+       <property name="text">
+        <string>Периметр:</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="label_3">
+       <property name="text">
+        <string>Площадь:</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLabel" name="labelPerimeter">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QLabel" name="labelSquare">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QLabel" name="labelMassCenter">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
