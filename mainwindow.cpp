@@ -14,7 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    scene = new QGraphicsScene(ui->graphicView);
+    scene = new BetterScene(ui->graphicView);
     scene->setSceneRect(0,0,780,580);
     ui->graphicView->setScene(scene);
     currentItem=nullptr;
@@ -29,17 +29,45 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-
-
-void QGraphicsScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
+BetterScene::BetterScene(QObject *parent): QGraphicsScene(parent), canva(0), figure(new QGraphicsItemGroup)
 {
 
 }
 
-void QGraphicsScene:: keyPressEvent(QKeyEvent *keyEvent)
+
+void BetterScene::setFigure(QGraphicsItemGroup *newFigure)
 {
-    addRect(30,30,30,30);
+    figure = newFigure;
 }
+
+void BetterScene::clearPoints()  { points.clear(); }
+
+QGraphicsItemGroup *BetterScene::getFigure() { return figure; }
+
+void BetterScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
+{
+    if(canva)
+    {
+        points.append(event->scenePos());
+        int d=points.length();
+        if(points.length()>1) figure->addToGroup(new QGraphicsLineItem(points[d-1].x(),points[d-1].y()
+                ,points[d-2].x(),points[d-2].y()));
+    }
+    else
+    {
+        if( !(items().isEmpty()) )items().first()->setTransformOriginPoint(event->scenePos());
+    }
+}
+
+void BetterScene::keyPressEvent(QKeyEvent *event)
+{
+    canva=0;
+    figure->addToGroup(new QGraphicsLineItem(points[points.length()-1].x(),points[points.length()-1].y(),
+            points[0].x(),points[0].y()));
+    clearPoints();
+
+}
+
 
 void MainWindow::on_radioEllipse_clicked()
 {
@@ -67,51 +95,7 @@ void MainWindow::on_radioTriangle_clicked()
 }
 
 
-void MainWindow::on_radioStar6_clicked()
-{
 
-    if(currentItem!=nullptr)
-    {
-        scene->removeItem(currentItem);
-        delete currentItem;
-    }
-        currentItem = new Star(6);
-        currentItem->setRotation(ui->horizontalSlider->value());
-        scene->addItem(currentItem);
-
-}
-
-
-void MainWindow::on_radioStar8_clicked()
-{
-
-
-    if(currentItem!=nullptr)
-    {
-        scene->removeItem(currentItem);
-        delete currentItem;
-    }
-        currentItem = new Star(8);
-        currentItem->setRotation(ui->horizontalSlider->value());
-        scene->addItem(currentItem);
-
-
-}
-
-
-void MainWindow::on_radioStar5_clicked()
-{
-
-    if(currentItem!=nullptr)
-    {
-        scene->removeItem(currentItem);
-        delete currentItem;
-    }
-        currentItem = new Star(5);
-        currentItem->setRotation(ui->horizontalSlider->value());
-        scene->addItem(currentItem);
-
-}
 
 
 void MainWindow::on_radioRect_clicked()
@@ -260,5 +244,21 @@ void MainWindow::on_radioStar_clicked()
             currentItem->setRotation(ui->horizontalSlider->value());
             scene->addItem(currentItem);
     }
+}
+
+
+void MainWindow::on_radioCanva_clicked(bool checked)
+{
+    if(currentItem != nullptr )
+    {
+        scene->removeItem(currentItem);
+        delete currentItem;
+    }
+
+    scene->setFigure(new QGraphicsItemGroup());
+    currentItem=scene->getFigure();
+    scene->addItem(currentItem);
+
+    scene->changeCanva(1);
 }
 

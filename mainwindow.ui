@@ -89,6 +89,13 @@
        </property>
       </widget>
      </item>
+     <item row="2" column="1">
+      <widget class="QRadioButton" name="radioCanva">
+       <property name="text">
+        <string>Canva</string>
+       </property>
+      </widget>
+     </item>
     </layout>
    </widget>
    <widget class="QWidget" name="gridLayoutWidget_2">
@@ -104,13 +111,6 @@
      <property name="horizontalSpacing">
       <number>5</number>
      </property>
-     <item row="1" column="2">
-      <widget class="QPushButton" name="pushCanvas">
-       <property name="text">
-        <string>Канва</string>
-       </property>
-      </widget>
-     </item>
      <item row="3" column="3">
       <widget class="QLineEdit" name="lineY"/>
      </item>
@@ -148,20 +148,6 @@
        </property>
       </widget>
      </item>
-     <item row="1" column="0">
-      <widget class="QPushButton" name="pushRight">
-       <property name="text">
-        <string>Вправо</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="0">
-      <widget class="QPushButton" name="pushLeft">
-       <property name="text">
-        <string>Влево</string>
-       </property>
-      </widget>
-     </item>
      <item row="2" column="1">
       <widget class="QLineEdit" name="lineScale"/>
      </item>
@@ -182,6 +168,20 @@
        </property>
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="2">
+      <widget class="QPushButton" name="pushRight">
+       <property name="text">
+        <string>Вправо</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QPushButton" name="pushLeft">
+       <property name="text">
+        <string>Влево</string>
        </property>
       </widget>
      </item>
@@ -266,7 +266,7 @@
      <x>0</x>
      <y>0</y>
      <width>1200</width>
-     <height>30</height>
+     <height>25</height>
     </rect>
    </property>
   </widget>

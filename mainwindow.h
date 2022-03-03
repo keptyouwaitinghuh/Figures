@@ -1,17 +1,45 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#pragma once
 
 #include <QMainWindow>
 #include <QMouseEvent>
-#include <QGraphicsScene>
 #include <QGraphicsItem>
 #include <QGraphicsSceneMouseEvent>
+#include <QGraphicsScene>
 
 
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
+
+class BetterScene: public QGraphicsScene
+{
+    bool canva;
+    QVector<QPointF> points;
+    QGraphicsItemGroup *figure;
+
+
+public:
+    void clearPoints();
+
+    void changeCanva(bool value){ canva = value; };
+
+    BetterScene(QObject *parent=0);
+
+    QGraphicsItemGroup *getFigure() ;
+
+
+    void setFigure(QGraphicsItemGroup *newFigure);
+
+protected:
+    void mousePressEvent(QGraphicsSceneMouseEvent *event);
+    void keyPressEvent(QKeyEvent *event);
+};
+
+
+
+
+
 
 class MainWindow : public QMainWindow
 {
@@ -29,12 +57,6 @@ private slots:
     void on_radioEllipse_clicked();
 
     void on_radioTriangle_clicked();
-
-    void on_radioStar6_clicked();
-
-    void on_radioStar8_clicked();
-
-    void on_radioStar5_clicked();
 
     void on_radioRect_clicked();
 
@@ -58,10 +80,11 @@ private slots:
 
     void on_radioStar_clicked();
 
+    void on_radioCanva_clicked(bool checked);
+
 private:
     Ui::MainWindow *ui;
-    QGraphicsScene *scene;
+    BetterScene *scene;
     QGraphicsItem *currentItem;
     QPointF massCent;
 };
-#endif // MAINWINDOW_H

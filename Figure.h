@@ -3,7 +3,6 @@
 #include <QPointF>
 #include <QVector>
 #include <QGraphicsItem>
-#include "mainwindow.h"
 
 class Figure
 {
